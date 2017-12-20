@@ -115,16 +115,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         if(b.getErrcode().equals("0"))
         {
             myApplication application=(myApplication)this.getApplicationContext();
-            application.setName(b.getData().get("name"));
-            application.setId(b.getData().get("studentid"));
-            application.setGender(b.getData().get("gender"));
+            application.setStuinfo(b);
             Intent i = new Intent(MainActivity.this, personInfo.class);
-            Bundle mBundle = new Bundle();
-            StuInfo sif=new StuInfo();
-            sif.setErrcode(b.getErrcode());
-            sif.setData(b.getData());
-            mBundle.putSerializable("StuInfo", sif);
-            i.putExtras(mBundle);
             startActivity(i);
             this.finish();
         }

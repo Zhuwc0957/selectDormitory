@@ -9,9 +9,12 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import cn.edu.pku.ss.zhuwc.app.myApplication;
 import cn.edu.pku.ss.zhuwc.bean.StuInfo;
 import cn.edu.pku.ss.zhuwc.bean.bean;
 
@@ -26,6 +29,7 @@ public class personInfo extends AppCompatActivity  implements View.OnClickListen
     private TextView txt_buliding;
     private TextView txt_room;
     private Button btn_action;
+    private ImageView logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,18 +43,29 @@ public class personInfo extends AppCompatActivity  implements View.OnClickListen
         txt_buliding=(TextView)findViewById(R.id.pstu_buliding);
         txt_room=(TextView)findViewById(R.id.pstu_room);
         btn_action=(Button) findViewById(R.id.btn_action);
+        logout=(ImageView)findViewById(R.id.logout);
         initview();
         btn_action.setOnClickListener(this);
+        logout.setOnClickListener(this);
     }
 
     public void onClick(View v)
     {
-        if(btn_action.getText().equals("退出"))
-            this.finish();
-        else
-        {
-            Intent i=new Intent(this,ModeSelect.class);
-            startActivityForResult(i,1);
+        switch (v.getId()) {
+            case R.id.btn_action:
+            if (btn_action.getText().equals("退出"))
+                this.finish();
+            else {
+                Intent i = new Intent(this, ModeSelect.class);
+                startActivityForResult(i, 1);
+            }
+            break;
+            case R.id.logout:
+                Intent i=new Intent(this,MainActivity.class);
+                startActivity(i);
+                this.finish();
+                break;
+            default:break;
         }
     }
 
@@ -64,7 +79,8 @@ public class personInfo extends AppCompatActivity  implements View.OnClickListen
     public void initview()
     {
         boolean flag=false;
-       StuInfo stuinfo = (StuInfo) getIntent().getSerializableExtra("StuInfo");
+        myApplication application=(myApplication)getApplicationContext();
+        bean stuinfo = (bean) application.getStuinfo();
         Log.d("selectdor",stuinfo.getData().get("studentid"));
         txt_name.setText(stuinfo.getData().get("name"));
         txt_id.setText(stuinfo.getData().get("studentid"));

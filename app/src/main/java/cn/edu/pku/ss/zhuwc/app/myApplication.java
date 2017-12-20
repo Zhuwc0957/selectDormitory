@@ -3,6 +3,8 @@ package cn.edu.pku.ss.zhuwc.app;
 
 import android.app.Application;
 
+import cn.edu.pku.ss.zhuwc.bean.bean;
+
 /**
  * Created by ZhuWC on 2017/12/2.
  */
@@ -13,31 +15,13 @@ public class myApplication extends Application {
         super.onCreate();
     }
 
-    private String name;
-    private String id;
-    private String gender;
+   private bean stuinfo;
 
-    public String getName() {
-        return name;
+    public bean getStuinfo() {
+        return stuinfo;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setStuinfo(bean stuinfo) {
+        this.stuinfo = stuinfo;
     }
 }

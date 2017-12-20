@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.StringTokenizer;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -39,6 +41,7 @@ import javax.net.ssl.TrustManager;
 
 import cn.edu.pku.ss.zhuwc.app.myApplication;
 import cn.edu.pku.ss.zhuwc.bean.bean;
+import cn.edu.pku.ss.zhuwc.bean.myArrayAdapter;
 
 public class SelectDormitory extends Activity  implements View.OnClickListener{
     private TextView title,stuname,stuid,stugender;
@@ -59,6 +62,7 @@ public class SelectDormitory extends Activity  implements View.OnClickListener{
                     updatedorm((bean)msg.obj );
                     break;
                 case 1:
+                    checkRes((bean)msg.obj);
                     Log.d("dormSelect","sucess");
                     break;
                 default:
@@ -104,11 +108,11 @@ public class SelectDormitory extends Activity  implements View.OnClickListener{
         build5=(TextView)findViewById(R.id.build14);
         spinner=(Spinner)findViewById(R.id.spinner);
         myApplication application=(myApplication)getApplicationContext();
-        stuname.setText(application.getName());
-        stuid.setText(application.getId());
-        stugender.setText(application.getGender());
+        stuname.setText(application.getStuinfo().getData().get("name"));
+        stuid.setText(application.getStuinfo().getData().get("studentid"));
+        stugender.setText(application.getStuinfo().getData().get("gender"));
         String getDormInfo="https://api.mysspku.com/index.php/V1/MobileCourse/getRoom?gender=";
-        if(application.getGender().equals("男"))
+        if(application.getStuinfo().getData().get("gender").equals("男"))
             getDormInfo+="1";
         else
             getDormInfo+="2";
@@ -185,10 +189,22 @@ public class SelectDormitory extends Activity  implements View.OnClickListener{
             dorm.add("13");
         if(!b.getData().get("14").equals("0"))
             dorm.add("14");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, android.R.id.text1, dorm);
+        ArrayAdapter<String> adapter;
+        adapter=new myArrayAdapter(this,dorm);
         spinner.setAdapter(adapter);
     }
 
+    public void checkRes(bean b)
+    {
+        if(b.getErrcode().equals("0"))
+        {
+            Intent i=new Intent(SelectDormitory.this,selectResult.class);
+            startActivity(i);
+            finish();
+        }
+        else
+            Toast.makeText(SelectDormitory.this , "信息填写有误" , Toast.LENGTH_LONG).show();
+    }
     public String getParm()
     {
         int num=getIntent().getIntExtra("mode",1);
@@ -339,7 +355,7 @@ public class SelectDormitory extends Activity  implements View.OnClickListener{
                     //调用解析方法
                     bean result=new bean();
                     result=parseJSON(jsonData);
-                    Log.d("dormSelect" , "3");
+                    Log.d("dormSelect" , String.valueOf(result.getData()));
                     Message msg = new Message();
                     if(result.getData()!=null)
                     {

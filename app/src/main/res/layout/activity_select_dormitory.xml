@@ -226,8 +226,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F"
-                android:id="@+id/fenge1"/>
+                android:background="#FFB90F" />
             <TableRow>
                 <TextView
                     android:text="选择楼号"
@@ -246,6 +245,12 @@
                     android:spinnerMode="dialog">
                 </Spinner>
             </TableRow>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="2.0dp"
+                android:background="#FFB90F"
+                android:id="@+id/fenge1"/>
             <TableRow android:id="@+id/tongzhu">
                 <TextView
                     android:text="同住人信息"
