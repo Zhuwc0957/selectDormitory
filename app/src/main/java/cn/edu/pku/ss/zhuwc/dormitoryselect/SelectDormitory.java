@@ -8,6 +8,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +34,7 @@ import java.net.URL;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.StringTokenizer;
@@ -65,6 +69,8 @@ public class SelectDormitory extends Activity  implements View.OnClickListener{
                     checkRes((bean)msg.obj);
                     Log.d("dormSelect","sucess");
                     break;
+                case 3:
+                    checkGender((bean)msg.obj);
                 default:
 
                     break;
@@ -120,8 +126,66 @@ public class SelectDormitory extends Activity  implements View.OnClickListener{
         btn_back.setOnClickListener(this);
         btn_action.setOnClickListener(this);
         initview();
+        s1id.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().length()==10)
+                {String str="https://api.mysspku.com/index.php/V1/MobileCourse/getDetail?stuid="+s1id.getText();
+                queryInternet(str);}
+            }
+        });
+        s2id.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().length()==10)
+                {String str="https://api.mysspku.com/index.php/V1/MobileCourse/getDetail?stuid="+s2id.getText();
+                    queryInternet(str);}
+            }
+        });
+        s3id.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().length()==10)
+                {String str="https://api.mysspku.com/index.php/V1/MobileCourse/getDetail?stuid="+s3id.getText();
+                    queryInternet(str);}
+            }
+        });
     }
 
+    public void getStuGender(String id)
+    {
+
+    }
     public void initview()
     {
         int mode=getIntent().getIntExtra("mode",1);
@@ -205,6 +269,20 @@ public class SelectDormitory extends Activity  implements View.OnClickListener{
         else
             Toast.makeText(SelectDormitory.this , "信息填写有误" , Toast.LENGTH_LONG).show();
     }
+
+    public void checkGender(bean b)
+    {
+        if(!b.getData().get("gender").equals(stugender.getText()))
+        {
+            Toast.makeText(SelectDormitory.this,"学号不存在或性别不符", Toast.LENGTH_LONG).show();
+            s1id.setText("");
+            s1id.setHint("请输入合法学号");
+            btn_action.setEnabled(false);
+        }
+        else {
+            btn_action.setEnabled(true);
+        }
+    }
     public String getParm()
     {
         int num=getIntent().getIntExtra("mode",1);
@@ -235,8 +313,35 @@ public class SelectDormitory extends Activity  implements View.OnClickListener{
                 finish();
                 break;
             case R.id.btn_actions:
+                int mode=getIntent().getIntExtra("mode",1);
+                if(mode==2)
+                {
+                    //Toast.makeText(SelectDormitory.this , "1"+s1id.getText()+"12" , Toast.LENGTH_LONG).show();
+                    if(s1id.getText().toString().equals("")||s1code.getText().toString().equals(""))
+                    {
+                        Toast.makeText(SelectDormitory.this , "同住人信息不能为空" , Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                }
+                if(mode==3)
+                {
+                    if(s1id.getText().toString().equals("")||s1code.getText().toString().equals("")||s2id.getText().toString().equals("")||s2code.getText().toString().equals(""))
+                    {
+                        Toast.makeText(SelectDormitory.this , "同住人信息不能为空" , Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                }
+                if(mode==4)
+                {
+                    if(s1id.getText().toString().equals("")||s1code.getText().toString().equals("")||s2id.getText().toString().equals("")||s2code.getText().toString().equals("")||s3id.getText().toString().equals("")||s3code.getText().toString().equals(""))
+                    {
+                        Toast.makeText(SelectDormitory.this , "同住人信息不能为空" , Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                }
                 final String address="https://api.mysspku.com/index.php/V1/MobileCourse/SelectRoom";
                 queryInternetpost(address);
+                break;
             default:
                 break;
         }
@@ -283,8 +388,25 @@ public class SelectDormitory extends Activity  implements View.OnClickListener{
                     Message msg = new Message();
                     if(result.getData().size()>1)
                     {
+                       Enumeration<String> keys=result.getData().keys();
+                        boolean flag=false;
+                        while(keys.hasMoreElements())
+                        {
+                            String str1=keys.nextElement();
+                            if(str1.equals("gender"))
+                            {
+                                flag=true;
+                                break;
+                            }
+                            Log.d("dormSelect" ,str1);
+                        }
+                        if(flag)
+                            msg.what=3;
+                        else
+                        {
                         Log.d("dormSelect" , "2");
                         msg.what = 0;
+                   }
                     }
                     else {
                         Log.d("dormSelect" , "1");
@@ -343,7 +465,6 @@ public class SelectDormitory extends Activity  implements View.OnClickListener{
                     InputStream in = con.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
                     StringBuilder response = new StringBuilder();
-
                     String str;
                     while ( (str = reader.readLine()) != null )
                     {

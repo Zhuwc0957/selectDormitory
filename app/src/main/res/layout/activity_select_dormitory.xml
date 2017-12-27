@@ -74,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F"
+                android:background="#b9b7b1"
                 />
             <TableRow>
                 <TextView
@@ -96,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F"
+                android:background="#b9b7b1"
                 />
             <TableRow>
                 <TextView
@@ -118,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F"
+                android:background="#b9b7b1"
                 />
             <TableRow>
                 <TextView
@@ -130,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F"
+                android:background="#b9b7b1"
                 />
             <TableRow>
                 <TextView
@@ -226,7 +226,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F" />
+                android:background="#b9b7b1" />
             <TableRow>
                 <TextView
                     android:text="选择楼号"
@@ -249,7 +249,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F"
+                android:background="#b9b7b1"
                 android:id="@+id/fenge1"/>
             <TableRow android:id="@+id/tongzhu">
                 <TextView
@@ -261,7 +261,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F"
+                android:background="#b9b7b1"
                 android:id="@+id/fenge2"/>
             <TableRow android:id="@+id/row_stu1">
                 <TextView
@@ -282,7 +282,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F"
+                android:background="#b9b7b1"
                 android:id="@+id/fenge3"/>
             <TableRow android:id="@+id/row_stu1_code">
                 <TextView
@@ -303,7 +303,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F"
+                android:background="#b9b7b1"
                 android:id="@+id/fenge4"/>
             <TableRow android:id="@+id/row_stu2">
                 <TextView
@@ -324,7 +324,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F"
+                android:background="#b9b7b1"
                 android:id="@+id/fenge5"/>
             <TableRow android:id="@+id/row_stu2_code">
                 <TextView
@@ -345,7 +345,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F"
+                android:background="#b9b7b1"
                 android:id="@+id/fenge6"/>
             <TableRow android:id="@+id/row_stu3">
                 <TextView
@@ -366,7 +366,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
                 android:layout_marginTop="2.0dp"
-                android:background="#FFB90F"
+                android:background="#b9b7b1"
                 android:id="@+id/fenge7"/>
             <TableRow android:id="@+id/row_stu3_code">
                 <TextView

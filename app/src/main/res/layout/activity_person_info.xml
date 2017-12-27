@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffb90f">
+    android:background="#ffb90f"
+    android:orientation="vertical" >
 
 
     <!--ActionBar-->
@@ -24,9 +25,11 @@
             android:textColor="#ffffffff"
             android:textSize="22.0sp" />
         <ImageView
-            android:layout_width="40.0dp"
-            android:layout_height="40.0dp"
+            android:layout_marginTop="10.0dp"
+            android:layout_width="30.0dp"
+            android:layout_height="30.0dp"
             android:id="@+id/logout"
+            android:layout_centerHorizontal="true"
             android:layout_alignParentRight="true"
             android:layout_gravity="center"
             android:src="@drawable/logout"/>
@@ -67,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:layout_marginTop="2.0dp"
-            android:background="#FFB90F"
+            android:background="#b9b7b1"
             />
 
         <TableRow>
@@ -92,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:layout_marginTop="2.0dp"
-            android:background="#FFB90F"
+            android:background="#b9b7b1"
             />
 
         <TableRow>
@@ -118,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:layout_marginTop="2.0dp"
-            android:background="#FFB90F"
+            android:background="#b9b7b1"
             />
 
         <TableRow>
@@ -144,7 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:layout_marginTop="2.0dp"
-            android:background="#FFB90F"
+            android:background="#b9b7b1"
             />
         <TableRow>
             <TextView
@@ -168,7 +171,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:layout_marginTop="2.0dp"
-            android:background="#FFB90F"
+            android:background="#b9b7b1"
             />
         <TableRow>
             <TextView
@@ -191,7 +194,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:layout_marginTop="2.0dp"
-            android:background="#FFB90F"
+            android:background="#b9b7b1"
             />
         <TableRow>
             <TextView
@@ -215,7 +218,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:layout_marginTop="2.0dp"
-            android:background="#FFB90F"
+            android:background="#b9b7b1"
             />
         <TableRow>
             <TextView
